@@ -5,7 +5,7 @@ import { Container, TextField, InputAdornment } from "@material-ui/core";
 import InputSelect from "./components/InputSelect";
 
 class App extends Component {
-  state = { volume: 0, dosage: 0, percent: 0, chlorine: 0 };
+  state = { volume: 0, dosage: 0, percent: 0, chlorine: 0};
 
   updateState = (variable) => (value) => {
     this.setState({ [variable]: value });
@@ -14,7 +14,7 @@ class App extends Component {
 
   calculateChlorine = () => {
     let amount =
-      (this.state.dosage * this.state.volume) / (this.state.percent * 10000);
+      (this.state.dosage * this.state.volume) / (this.state.percent * 1000);
     this.setState({ chlorine: amount });
   };
 

@@ -12,12 +12,22 @@ class InputSelect extends React.Component {
   handleSelectChange = (e) => {
       let factor = e.target.value
       this.setState({factor: factor});
-      this.setState({value: this.state.standardizedValue * factor})
+      this.setState({value: parseFloat((this.state.standardizedValue * factor).toFixed(4))});
   }
 
   handleInputChange = (e) => {
       this.setState({value: e.target.value, standardizedValue: e.target.value / this.state.factor}, () => this.props.onChange(this.state.standardizedValue));
   }
+
+  static getDerivedStateFromProps(props, state) {
+      if (props.value && props.value !== state.value) {
+          return {
+              value: parseFloat((props.value * state.factor).toFixed(4))
+          }
+      }
+      return null;
+  }
+
 
   render() {
     let { units, onChange, ...otherProps } = this.props;
