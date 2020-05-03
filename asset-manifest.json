@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/chlorine-dosage-calculator/static/css/main.b1a47344.chunk.css",
+    "main.js": "/chlorine-dosage-calculator/static/js/main.9d50e5bc.chunk.js",
+    "main.js.map": "/chlorine-dosage-calculator/static/js/main.9d50e5bc.chunk.js.map",
+    "runtime-main.js": "/chlorine-dosage-calculator/static/js/runtime-main.baa824d1.js",
+    "runtime-main.js.map": "/chlorine-dosage-calculator/static/js/runtime-main.baa824d1.js.map",
+    "static/js/2.565b33c3.chunk.js": "/chlorine-dosage-calculator/static/js/2.565b33c3.chunk.js",
+    "static/js/2.565b33c3.chunk.js.map": "/chlorine-dosage-calculator/static/js/2.565b33c3.chunk.js.map",
+    "index.html": "/chlorine-dosage-calculator/index.html",
+    "precache-manifest.e7cc4c413a0784bfd8d69176409a23c1.js": "/chlorine-dosage-calculator/precache-manifest.e7cc4c413a0784bfd8d69176409a23c1.js",
+    "service-worker.js": "/chlorine-dosage-calculator/service-worker.js",
+    "static/css/main.b1a47344.chunk.css.map": "/chlorine-dosage-calculator/static/css/main.b1a47344.chunk.css.map",
+    "static/js/2.565b33c3.chunk.js.LICENSE.txt": "/chlorine-dosage-calculator/static/js/2.565b33c3.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/chlorine-dosage-calculator/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.baa824d1.js",
+    "static/js/2.565b33c3.chunk.js",
+    "static/css/main.b1a47344.chunk.css",
+    "static/js/main.9d50e5bc.chunk.js"
+  ]
+}
