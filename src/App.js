@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Container, TextField, InputAdornment } from "@material-ui/core";
+import { Container, TextField, InputAdornment, Typography } from "@material-ui/core";
 import InputSelect from "./components/InputSelect";
 
 class App extends Component {
@@ -32,6 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <Container maxWidth="md">
+          <Typography variant="h4" style={{"marginBottom": '1em'}}>Chlorine Dosage Calculator</Typography>
           <form noValidate autoComplete="off">
             <div className="text-input">
               <InputSelect
@@ -79,7 +80,7 @@ class App extends Component {
             </div>
           </form>
           <div className="text-input">
-            <h3 style={{ marginTop: "3em" }}>Chlorine Required</h3>
+            <Typography variant="h5" style={{ marginTop: "3em" }}>Chlorine Required</Typography>
             <InputSelect
               className="text-input"
               type="tel"
