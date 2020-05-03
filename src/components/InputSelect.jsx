@@ -16,6 +16,9 @@ class InputSelect extends React.Component {
   }
 
   handleInputChange = (e) => {
+      if (isNaN(Number(e.target.value))) {
+        return;
+      }
       this.setState({value: e.target.value, standardizedValue: e.target.value / this.state.factor}, () => this.props.onChange(this.state.standardizedValue));
   }
 

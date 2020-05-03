@@ -37,6 +37,8 @@ class App extends Component {
               <InputSelect
                 className="text-input"
                 label="Volume"
+                type="tel"
+                pattern="^-?[0-9]\d*\.?\d*$"
                 onChange={this.updateState("volume")}
                 units={[
                   { name: "Cubic meters", factor: 1 },
@@ -49,6 +51,8 @@ class App extends Component {
             <div className="text-input">
               <TextField
                 label="Dosage"
+                type="tel"
+                pattern="^-?[0-9]\d*\.?\d*$"
                 onChange={(e) => this.updateState("dosage")(e.target.value)}
                 value={this.state.dosage}
                 InputProps={{
@@ -62,6 +66,8 @@ class App extends Component {
               <TextField
                 className="text-input"
                 label="Percent"
+                type="tel"
+                pattern="^-?[0-9]\d*\.?\d*$"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">%</InputAdornment>
@@ -76,6 +82,8 @@ class App extends Component {
             <h3 style={{ marginTop: "3em" }}>Chlorine Required</h3>
             <InputSelect
               className="text-input"
+              type="tel"
+              pattern="^-?[0-9]\d*\.?\d*$"
               value={this.state.chlorine}
               InputProps={{
                 readOnly: true,
