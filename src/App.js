@@ -5,17 +5,27 @@ import { Container, TextField, InputAdornment } from "@material-ui/core";
 import InputSelect from "./components/InputSelect";
 
 class App extends Component {
-  state = { volume: 0, dosage: 0, percent: 0, chlorine: 0};
+  state = { volume: '', dosage: '', percent: '', chlorine: 0 };
 
   updateState = (variable) => (value) => {
-    this.setState({ [variable]: value });
-    this.calculateChlorine();
+    if (isNaN(Number(value))) {
+      return;
+    }
+    this.setState({ [variable]: value }, () =>
+      this.calculateChlorine()
+    );
   };
 
   calculateChlorine = () => {
-    let amount =
-      (this.state.dosage * this.state.volume) / (this.state.percent * 1000);
-    this.setState({ chlorine: amount });
+    let amount = parseFloat(
+      (this.state.dosage * this.state.volume) / this.state.percent
+    );
+    let chlorineRequired = "";
+    if (!isNaN(amount) && isFinite(amount)) {
+      chlorineRequired = parseFloat(amount);
+    }
+
+    this.setState({ chlorine: chlorineRequired });
   };
 
   render() {
@@ -23,59 +33,61 @@ class App extends Component {
       <div className="App">
         <Container maxWidth="md">
           <form noValidate autoComplete="off">
-          <div class="text-input">
-            <InputSelect
-              className="text-input"
-              label="Volume"
-              onChange={this.updateState("volume")}
-              units={[
-                { name: "cubic meters", factor: 1 },
-                { name: "liters", factor: 1000 },
-                { name: "US Gallon", factor: 264.172 },
-                { name: "Gallon", factor: 219.969204701183 },
-              ]}
-            />
+            <div className="text-input">
+              <InputSelect
+                className="text-input"
+                label="Volume"
+                onChange={this.updateState("volume")}
+                units={[
+                  { name: "Cubic meters", factor: 1 },
+                  { name: "Liters", factor: 1000 },
+                  { name: "US Gallons", factor: 264.172 },
+                  { name: "Gallons", factor: 219.969204701183 },
+                ]}
+              />
             </div>
             <div className="text-input">
-            <TextField
-              label="Dosage"
-              onChange={(e) => this.updateState("dosage")(e.target.value)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">mg/L</InputAdornment>
-                ),
-              }}
-            />
+              <TextField
+                label="Dosage"
+                onChange={(e) => this.updateState("dosage")(e.target.value)}
+                value={this.state.dosage}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">mg/L</InputAdornment>
+                  ),
+                }}
+              />
             </div>
             <div className="text-input">
-            <TextField
-              className="text-input"
-              label="Percent"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">%</InputAdornment>
-                ),
-              }}
-              onChange={(e) => this.updateState("percent")(e.target.value)}
-            />
+              <TextField
+                className="text-input"
+                label="Percent"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">%</InputAdornment>
+                  ),
+                }}
+                value={this.state.percent}
+                onChange={(e) => this.updateState("percent")(e.target.value)}
+              />
             </div>
           </form>
           <div className="text-input">
-          <h3 style={{marginTop: "3em"}}>Chlorine Required</h3>
+            <h3 style={{ marginTop: "3em" }}>Chlorine Required</h3>
             <InputSelect
               className="text-input"
               value={this.state.chlorine}
               InputProps={{
-                readOnly: true
+                readOnly: true,
               }}
               units={[
-                { name: "cubic meters", factor: 1 },
-                { name: "liters", factor: 1000 },
-                { name: "US Gallon", factor: 264.172 },
-                { name: "Gallon", factor: 219.969204701183 },
+                { name: "Liters", factor: 1 },
+                { name: "Cubic meters", factor: 0.001 },
+                { name: "US Gallons", factor: 0.264172 },
+                { name: "Gallons", factor: 0.219969204701183 },
               ]}
             />
-            </div>
+          </div>
         </Container>
       </div>
     );

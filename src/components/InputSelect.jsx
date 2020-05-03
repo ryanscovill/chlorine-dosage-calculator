@@ -20,9 +20,10 @@ class InputSelect extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-      if (props.value && props.value !== state.value) {
+      if (props.value !== undefined) {
           return {
-              value: parseFloat((props.value * state.factor).toFixed(4))
+              value: parseFloat((props.value * state.factor).toFixed(4)),
+              standardizedValue: props.value
           }
       }
       return null;
