@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { Container, TextField, InputAdornment, Typography } from "@material-ui/core";
+import { Container, InputAdornment, Typography } from "@material-ui/core";
 import InputSelect from "./components/InputSelect";
+import NumberField from "./components/NumberField";
 
 class App extends Component {
-  state = { volume: '', dosage: '', percent: '', chlorine: 0 };
+  state = { volume: '', volumeFactor: 1, dosage: '', percent: '', chlorine: 0, chlorineFactor: 1000 };
+
+  units = [
+    { name: "Liters", factor: 1000 },
+    { name: "Cubic meters", factor: 1 },
+    { name: "Gallons", factor: 219.969204701183 },
+    { name: "US Gallons", factor: 264.172 },
+  ]
 
   updateState = (variable) => (value) => {
     if (isNaN(Number(value))) {
@@ -18,7 +25,7 @@ class App extends Component {
 
   calculateChlorine = () => {
     let amount = parseFloat(
-      (this.state.dosage * this.state.volume) / this.state.percent
+      (this.state.dosage * (this.state.volume / this.state.volumeFactor)) / (this.state.percent * 10000)
     );
     let chlorineRequired = "";
     if (!isNaN(amount) && isFinite(amount)) {
@@ -36,24 +43,16 @@ class App extends Component {
           <form noValidate autoComplete="off">
             <div className="text-input">
               <InputSelect
-                className="text-input"
                 label="Volume"
-                type="tel"
-                pattern="^-?[0-9]\d*\.?\d*$"
-                onChange={this.updateState("volume")}
-                units={[
-                  { name: "Cubic meters", factor: 1 },
-                  { name: "Liters", factor: 1000 },
-                  { name: "US Gallons", factor: 264.172 },
-                  { name: "Gallons", factor: 219.969204701183 },
-                ]}
+                onInputChange={this.updateState("volume")}
+                onSelectChange={this.updateState("volumeFactor")}
+                factor={this.state.volumeFactor}
+                units={this.units}
               />
             </div>
             <div className="text-input">
-              <TextField
+              <NumberField
                 label="Dosage"
-                type="tel"
-                pattern="^-?[0-9]\d*\.?\d*$"
                 onChange={(e) => this.updateState("dosage")(e.target.value)}
                 value={this.state.dosage}
                 InputProps={{
@@ -64,11 +63,8 @@ class App extends Component {
               />
             </div>
             <div className="text-input">
-              <TextField
-                className="text-input"
+              <NumberField
                 label="Percent"
-                type="tel"
-                pattern="^-?[0-9]\d*\.?\d*$"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">%</InputAdornment>
@@ -82,19 +78,13 @@ class App extends Component {
           <div className="text-input">
             <Typography variant="h5" style={{ marginTop: "3em" }}>Chlorine Required</Typography>
             <InputSelect
-              className="text-input"
-              type="tel"
-              pattern="^-?[0-9]\d*\.?\d*$"
-              value={this.state.chlorine}
+              value={parseFloat((this.state.chlorine * this.state.chlorineFactor).toFixed(4))}
+              factor={this.state.chlorineFactor}
               InputProps={{
                 readOnly: true,
               }}
-              units={[
-                { name: "Liters", factor: 1 },
-                { name: "Cubic meters", factor: 0.001 },
-                { name: "US Gallons", factor: 0.264172 },
-                { name: "Gallons", factor: 0.219969204701183 },
-              ]}
+              onSelectChange={this.updateState("chlorineFactor")}
+              units={this.units}
             />
           </div>
         </Container>
