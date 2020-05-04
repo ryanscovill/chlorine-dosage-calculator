@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/chlorine-dosage-calculator/precache-manifest.e7cc4c413a0784bfd8d69176409a23c1.js"
+  "/chlorine-dosage-calculator/precache-manifest.21a607ba5a20538f4138809a732b2437.js"
 );
 
 self.addEventListener('message', (event) => {
