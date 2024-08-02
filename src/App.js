@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Container, InputAdornment, Typography } from "@material-ui/core";
+import { Container, InputAdornment, Typography } from "@mui/material";
 import InputSelect from "./components/InputSelect";
 import NumberField from "./components/NumberField";
 
@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div className="App">
         <Container maxWidth="md">
-          <Typography variant="h4" style={{"marginBottom": '1em'}}>Chlorine Dosage Calculator</Typography>
+          <Typography variant="h4" style={{"marginBottom": '1em', "marginTop": '.5em'}}>Chlorine Dosage Calculator</Typography>
           <form noValidate autoComplete="off">
             <div className="text-input">
               <InputSelect

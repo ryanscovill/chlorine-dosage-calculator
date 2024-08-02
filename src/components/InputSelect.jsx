@@ -1,6 +1,7 @@
 import React from "react";
-import { Select, MenuItem } from "@material-ui/core";
 import NumberField from "./NumberField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 class InputSelect extends React.Component {
 
