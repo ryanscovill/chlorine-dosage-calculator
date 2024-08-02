@@ -4,8 +4,9 @@ import { TextField } from "@material-ui/core";
 export default function NumberField(props) {
   return (
     <TextField
-      type="tel"
-      pattern="^-?[0-9]\d*\.?\d*$"
+      type="number"
+      inputMode="decimal"
+      pattern="^-?[0-9]+(\.[0-9]*)?$"
       {...props}
     />
   );
