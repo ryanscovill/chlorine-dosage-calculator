@@ -8,7 +8,7 @@ import theme from "./theme";
 class App extends Component {
   initialState = { volume: '', volumeFactor: 1, dosage: '', percent: '', chlorine: 0, chlorineFactor: 1000 };
 
-  state = { ...this.initialState };
+  state = { ...this.initialState, isFormReset: true };
 
   units = [
     { name: "Liters", factor: 1000 },
@@ -21,7 +21,7 @@ class App extends Component {
     if (isNaN(Number(value))) {
       return;
     }
-    this.setState({ [variable]: value }, () =>
+    this.setState({ [variable]: value, isFormReset: false }, () =>
       this.calculateChlorine()
     );
   };
@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   clearState = () => {
-    this.setState({ ...this.initialState });
+    this.setState({ ...this.initialState, isFormReset: true });
   };
 
   render() {
@@ -49,7 +49,9 @@ class App extends Component {
           <Container maxWidth="md">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="h4" style={{ marginBottom: '1em', marginTop: '.5em' }}>Chlorine Dosage Calculator</Typography>
-              <Button variant="contained" color="secondary" onClick={this.clearState}>Clear</Button>
+              {!this.state.isFormReset && (
+                <Button variant="contained" color="secondary" onClick={this.clearState}>Clear</Button>
+              )}
             </div>
             <form noValidate autoComplete="off">
               <div className="text-input">
@@ -88,7 +90,7 @@ class App extends Component {
               </div>
             </form>
             <div className="text-input">
-              <Typography variant="h5" style={{ marginTop: "3em" }}>Chlorine Required</Typography>
+              <Typography variant="h5" style={{ marginTop: "2em" }}>Chlorine Required</Typography>
               <InputSelect
                 value={parseFloat((this.state.chlorine * this.state.chlorineFactor).toFixed(4))}
                 factor={this.state.chlorineFactor}
