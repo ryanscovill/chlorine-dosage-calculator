@@ -48,7 +48,7 @@ class App extends Component {
         <div className="App">
           <Container maxWidth="md">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h4" style={{ marginBottom: '1em', marginTop: '.5em' }}>Chlorine Dosage Calculator</Typography>
+              <Typography variant="h4" style={{ marginBottom: '.5em', marginTop: '.5em' }}>Chlorine Dosage Calculator</Typography>
               {!this.state.isFormReset && (
                 <Button variant="contained" color="secondary" onClick={this.clearState}>Clear</Button>
               )}
