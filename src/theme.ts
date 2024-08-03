@@ -1,14 +1,24 @@
 import { createTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import React from 'react';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#2196f3',
-    },
-    secondary: {
-      main: '#ff3d00',
-    },
-  },
-});
+const useAppTheme = () => {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-export default theme;
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+          secondary: {
+            main: '#ff3d00'
+          }
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return theme;
+};
+
+export default useAppTheme;
