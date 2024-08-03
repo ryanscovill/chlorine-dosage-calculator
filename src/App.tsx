@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   clearState = () => {
-    this.setState({ ...this.initialState, isFormReset: true });
+    this.setState({ volume: '', dosage: '', percent: '', chlorine: 0, isFormReset: true });
   };
 
   render() {
