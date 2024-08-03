@@ -17,7 +17,7 @@ class App extends Component {
     { name: "US Gallons", factor: 264.172 },
   ];
 
-  updateState = (variable) => (value) => {
+  updateState = (variable: string) => (value: any) => {
     if (isNaN(Number(value))) {
       return;
     }
@@ -28,11 +28,11 @@ class App extends Component {
 
   calculateChlorine = () => {
     let amount = parseFloat(
-      (this.state.dosage * (this.state.volume / this.state.volumeFactor)) / (this.state.percent * 10000)
+      (((parseFloat(this.state.dosage) * (parseFloat(this.state.volume) / this.state.volumeFactor)) / (parseFloat(this.state.percent) * 10000)).toFixed(4)).toString()
     );
     let chlorineRequired = "";
     if (!isNaN(amount) && isFinite(amount)) {
-      chlorineRequired = parseFloat(amount);
+      chlorineRequired = amount.toString();
     }
 
     this.setState({ chlorine: chlorineRequired });
@@ -67,7 +67,7 @@ class App extends Component {
               <div className="text-input">
                 <NumberField
                   label="Dosage"
-                  onChange={(e) => this.updateState("dosage")(e.target.value)}
+                  onChange={(e: { target: { value: any; }; }) => this.updateState("dosage")(e.target.value)}
                   value={this.state.dosage}
                   InputProps={{
                     endAdornment: (
@@ -85,7 +85,7 @@ class App extends Component {
                     ),
                   }}
                   value={this.state.percent}
-                  onChange={(e) => this.updateState("percent")(e.target.value)}
+                  onChange={(e: { target: { value: any; }; }) => this.updateState("percent")(e.target.value)}
                 />
               </div>
             </form>
