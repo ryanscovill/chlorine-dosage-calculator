@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/chlorine-dosage-calculator/static/css/main.ce0f0c76.css",
-    "main.js": "/chlorine-dosage-calculator/static/js/main.76dbbfc5.js",
+    "main.js": "/chlorine-dosage-calculator/static/js/main.df710efd.js",
+    "service-worker.js": "/chlorine-dosage-calculator/service-worker.js",
     "index.html": "/chlorine-dosage-calculator/index.html",
     "main.ce0f0c76.css.map": "/chlorine-dosage-calculator/static/css/main.ce0f0c76.css.map",
-    "main.76dbbfc5.js.map": "/chlorine-dosage-calculator/static/js/main.76dbbfc5.js.map"
+    "main.df710efd.js.map": "/chlorine-dosage-calculator/static/js/main.df710efd.js.map"
   },
   "entrypoints": [
     "static/css/main.ce0f0c76.css",
-    "static/js/main.76dbbfc5.js"
+    "static/js/main.df710efd.js"
   ]
 }
