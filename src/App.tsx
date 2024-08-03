@@ -12,8 +12,8 @@ class App extends Component {
 
   units = [
     { name: "Liters", factor: 1000 },
-    { name: "Cubic meters", factor: 1 },
-    { name: "Gallons", factor: 219.969204701183 },
+    { name: "Cubic Meters", factor: 1 },
+    { name: "Imperial Gallons", factor: 219.969204701183 },
     { name: "US Gallons", factor: 264.172 },
   ];
 
