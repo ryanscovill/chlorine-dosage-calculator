@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import "./App.css";
 import { Container, InputAdornment, Typography, Button, ThemeProvider } from "@mui/material";
 import InputSelect from "./components/InputSelect";
