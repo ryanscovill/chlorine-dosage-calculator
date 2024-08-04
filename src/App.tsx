@@ -34,7 +34,7 @@ const App: React.FC = () => {
         return 'Chlorine Dosage Calculator';
       // Add more cases for other routes
       default:
-        return 'App Title';
+        return 'Chlorine Dosage Calculator';
     }
   };
 
