@@ -1,12 +1,11 @@
 import React, { useState, useRef } from "react";
-import { Container, Typography, Button } from "@mui/material";
+import { Container, Button } from "@mui/material";
 
 interface FormWrapperProps {
-  title: string;
   children: React.ReactElement;
 }
 
-const FormWrapper: React.FC<FormWrapperProps> = ({ title, children }) => {
+const FormWrapper: React.FC<FormWrapperProps> = ({ children }) => {
   const [isFormReset, setIsFormReset] = useState(true);
   const formRef = useRef<{ reset: () => void }>(null);
 
@@ -18,13 +17,13 @@ const FormWrapper: React.FC<FormWrapperProps> = ({ title, children }) => {
 
   return (
     <Container maxWidth="sm">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5em', marginTop: '0.5em' }}>
-        <Typography variant="h4">{title}</Typography>
+      <div style={{ marginBottom: '1em' }}></div>
+      {React.cloneElement(children, { ref: formRef, onFormResetChange: setIsFormReset })}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5em', marginTop: '1em' }}>
         {!isFormReset && (
           <Button variant="contained" color="secondary" onClick={handleClear}>Clear</Button>
         )}
       </div>
-      {React.cloneElement(children, { ref: formRef, onFormResetChange: setIsFormReset })}
     </Container>
   );
 };
