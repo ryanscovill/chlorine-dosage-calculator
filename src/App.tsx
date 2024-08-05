@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, Navigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -18,6 +18,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import useAppTheme from "./theme";
 import ChlorineDosageCalculator from "./components/ChlorineDosageCalculator";
+import PipeVolumeCalculator from "./components/PipeVolumeCalculator";
 
 const App: React.FC = () => {
   const theme = useAppTheme();
@@ -30,9 +31,10 @@ const App: React.FC = () => {
 
   const getTitle = () => {
     switch (location.pathname) {
-      case '/chlorine-dosage-calculator':
+      case '/chlorine-dosage':
         return 'Chlorine Dosage Calculator';
-      // Add more cases for other routes
+      case '/pipe-volume':
+        return 'Pipe Volume Calculator';
       default:
         return 'Chlorine Dosage Calculator';
     }
@@ -64,17 +66,21 @@ const App: React.FC = () => {
           onKeyDown={toggleDrawer}
         >
           <List>
-            <ListItem button component={Link} to="/chlorine-dosage-calculator">
-              <ListItemText primary="Chlorine Dosage Calculator" />
+            <ListItem button component={Link} to="/chlorine-dosage">
+              <ListItemText primary="Chlorine Dosage" />
             </ListItem>
-            {/* Add more menu items here */}
+            <ListItem button component={Link} to="/pipe-volume">
+              <ListItemText primary="Pipe Volume" />
+            </ListItem>
           </List>
           <Divider />
         </Box>
       </Drawer>
       <Container>
         <Routes>
-          <Route path="/chlorine-dosage-calculator" element={<ChlorineDosageCalculator />} />
+          <Route path="/" element={<Navigate to="/chlorine-dosage" />} />
+          <Route path="/chlorine-dosage" element={<ChlorineDosageCalculator />} />
+          <Route path="/pipe-volume" element={<PipeVolumeCalculator />} />
           {/* Add more routes here */}
         </Routes>
       </Container>
