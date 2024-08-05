@@ -31,9 +31,9 @@ const App: React.FC = () => {
 
   const getTitle = () => {
     switch (location.pathname) {
-      case '/chlorine-dosage':
+      case '/chlorine-dosage-calculator/chlorine-dosage':
         return 'Chlorine Dosage Calculator';
-      case '/pipe-volume':
+      case '/chlorine-dosage-calculator/pipe-volume':
         return 'Pipe Volume Calculator';
       default:
         return 'Chlorine Dosage Calculator';
@@ -66,10 +66,10 @@ const App: React.FC = () => {
           onKeyDown={toggleDrawer}
         >
           <List>
-            <ListItem button component={Link} to="/chlorine-dosage">
+            <ListItem button component={Link} to="/chlorine-dosage-calculator/chlorine-dosage">
               <ListItemText primary="Chlorine Dosage" />
             </ListItem>
-            <ListItem button component={Link} to="/pipe-volume">
+            <ListItem button component={Link} to="/chlorine-dosage-calculator/pipe-volume">
               <ListItemText primary="Pipe Volume" />
             </ListItem>
           </List>
@@ -78,10 +78,10 @@ const App: React.FC = () => {
       </Drawer>
       <Container>
         <Routes>
-          <Route path="/" element={<Navigate to="/chlorine-dosage" />} />
-          <Route path="/chlorine-dosage" element={<ChlorineDosageCalculator />} />
-          <Route path="/pipe-volume" element={<PipeVolumeCalculator />} />
-          {/* Add more routes here */}
+        <Route path="/" element={<Navigate to="/chlorine-dosage-calculator/chlorine-dosage" />} />
+          <Route path="/chlorine-dosage-calculator" element={<Navigate to="/chlorine-dosage-calculator/chlorine-dosage" />} />
+          <Route path="/chlorine-dosage-calculator/chlorine-dosage" element={<ChlorineDosageCalculator />} />
+          <Route path="/chlorine-dosage-calculator/pipe-volume" element={<PipeVolumeCalculator />} />
         </Routes>
       </Container>
     </ThemeProvider>
