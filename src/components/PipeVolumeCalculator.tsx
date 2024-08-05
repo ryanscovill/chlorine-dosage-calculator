@@ -1,9 +1,9 @@
-import ChlorineForm from "./ChlorineForm";
 import FormWrapper from "./FormWrapper";
+import PipeVolumeForm from "./PipeVolumeForm";
 
 const ChlorineDosageCalculator: React.FC = () => (
     <FormWrapper>
-      <ChlorineForm />
+      <PipeVolumeForm />
     </FormWrapper>
   );
 

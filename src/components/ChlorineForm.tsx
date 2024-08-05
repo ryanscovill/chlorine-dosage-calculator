@@ -2,7 +2,7 @@ import React, { useReducer, useImperativeHandle, forwardRef } from "react";
 import { Grid, InputAdornment, Typography } from "@mui/material";
 import InputSelect from "./InputSelect";
 import NumberField from "./NumberField";
-import { units } from "../models/unit.model";
+import { volumeUnits } from "../models/unit.model";
 
 interface State {
   volume: string;
@@ -32,14 +32,14 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-const calculateChlorine = (s: State) => {
+const calculateChlorine = (s: State): number => {
   const volume = parseFloat(s.volume) / s.volumeFactor;
   const dosage = parseFloat(s.dosage);
   const percent = parseFloat(s.percent);
   if (isNaN(volume) || isNaN(dosage) || isNaN(percent)) {
     return 0;
   }
-  return (dosage * volume) / (percent * 10000);
+  return parseFloat(((dosage * volume) / (percent * 10000)).toFixed(4));
 };
 
 interface ChlorineFormProps {
@@ -69,7 +69,7 @@ const ChlorineForm = forwardRef(({ onFormResetChange = () => {} }: ChlorineFormP
             onSelectChange={(value) => dispatch({ type: 'SET_FIELD', field: 'volumeFactor', value })}
             factor={state.volumeFactor}
             value={state.volume}
-            units={units}
+            units={volumeUnits}
             fullWidth
           />
         </Grid>
@@ -96,13 +96,13 @@ const ChlorineForm = forwardRef(({ onFormResetChange = () => {} }: ChlorineFormP
           />
         </Grid>
       </Grid>
-      <Typography variant="h5" style={{ marginTop: "2em" }}>Chlorine Required</Typography>
+      <Typography variant="h6" style={{ marginTop: "2rem", marginBottom: ".5rem" }}>Chlorine Required</Typography>
       <InputSelect
         value={parseFloat((state.chlorine * state.chlorineFactor).toFixed(4))}
         factor={state.chlorineFactor}
         InputProps={{ readOnly: true }}
         onSelectChange={(value) => dispatch({ type: 'SET_FIELD', field: 'chlorineFactor', value })}
-        units={units}
+        units={volumeUnits}
         error={isNaN(state.chlorine) || !isFinite(state.chlorine)}
         fullWidth
       />
